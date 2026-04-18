@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://s8pl0i5kin2c"]
+
+[ext_resource type="Script" uid="uid://cw7dxwi06qx20" path="res://scripts/display/icon_component.gd" id="1_rgl3e"]
+
+[node name="IconComponent" type="Node3D" unique_id=902515679 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_rgl3e")
+sprite = NodePath("Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=650780091]
+layers = 2
+pixel_size = 0.0064
+axis = 1
+billboard = 2
+no_depth_test = true
+fixed_size = true

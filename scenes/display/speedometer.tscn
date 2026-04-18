@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://ddmn2urpu1kok"]
+
+[ext_resource type="Script" uid="uid://beo2re0rlrmmi" path="res://scripts/display/speedometer.gd" id="1_dodbo"]
+[ext_resource type="Texture2D" uid="uid://b7uc8gem53v7" path="res://textures/display/speedometer.png" id="2_amecf"]
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/vhs_shader_material.tres" id="2_ha2me"]
+
+[node name="Speedometer" type="Control" unique_id=526530144 node_paths=PackedStringArray("speed_label", "speed_bar")]
+custom_minimum_size = Vector2(420, 403)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -201.5
+offset_right = 210.0
+offset_bottom = 201.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dodbo")
+speed_label = NodePath("SpeedLabel")
+speed_bar = NodePath("SpeedBar")
+
+[node name="SpeedLabel" type="Label" parent="." unique_id=1381845904]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.75686276, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.8156863, 0.09019608, 0.24705882, 0.6)
+theme_override_font_sizes/font_size = 48
+text = "40 m/s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedBar" type="TextureProgressBar" parent="." unique_id=1042702068]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 40.0
+value = 40.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("2_amecf")
+tint_progress = Color(1, 0.09019608, 0.36078432, 1)
+
+[node name="ShaderRect" type="ColorRect" parent="." unique_id=2063701398]
+material = ExtResource("2_ha2me")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

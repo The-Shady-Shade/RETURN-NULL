@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://e4qaawt7wqkk"]
+
+[ext_resource type="Script" uid="uid://cr0qtcpf34r5y" path="res://scripts/display/map.gd" id="1_5asso"]
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/vhs_shader_material.tres" id="2_5hqkh"]
+
+[node name="Map" type="Control" unique_id=526530144 node_paths=PackedStringArray("map_texture")]
+custom_minimum_size = Vector2(885, 692)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -442.5
+offset_top = -201.5
+offset_right = 442.5
+offset_bottom = 201.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5asso")
+map_texture = NodePath("MapTexture")
+
+[node name="MapTexture" type="TextureRect" parent="." unique_id=1988167224]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShaderRect" type="ColorRect" parent="." unique_id=1810120999]
+material = ExtResource("2_5hqkh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://c2exrbp4wpuxp"]
+
+[ext_resource type="Script" uid="uid://kb5716k0uffd" path="res://scripts/menu/settings_menu.gd" id="1_qk8rs"]
+
+[node name="SettingsMenu" type="Control" unique_id=1338995418 node_paths=PackedStringArray("invert_x_axis_checkbox", "invert_y_axis_checkbox", "master_slider", "soundtrack_slider", "sfx_slider")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qk8rs")
+main_menu_path = "uid://binxhqdu5nxh"
+invert_x_axis_checkbox = NodePath("PanelContainer/VBoxContainer/InvertXAxisCheckBox")
+invert_y_axis_checkbox = NodePath("PanelContainer/VBoxContainer/InvertYAxisCheckBox")
+master_slider = NodePath("PanelContainer/VBoxContainer/MasterSlider")
+soundtrack_slider = NodePath("PanelContainer/VBoxContainer/SoundtrackSlider")
+sfx_slider = NodePath("PanelContainer/VBoxContainer/SFXSlider")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1026107354]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=815328856]
+layout_mode = 2
+
+[node name="ControlsLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=76630510]
+layout_mode = 2
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="InvertXAxisCheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer" unique_id=570699486]
+layout_mode = 2
+text = "Invert X Axis"
+alignment = 1
+
+[node name="InvertYAxisCheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer" unique_id=494423762]
+layout_mode = 2
+text = "Invert Y Axis"
+alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1865776258]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="MasterLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=570552185]
+layout_mode = 2
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="PanelContainer/VBoxContainer" unique_id=714869529]
+layout_mode = 2
+value = 100.0
+
+[node name="SoundtrackLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1702716592]
+layout_mode = 2
+text = "Soundtrack"
+
+[node name="SoundtrackSlider" type="HSlider" parent="PanelContainer/VBoxContainer" unique_id=1633746320]
+layout_mode = 2
+value = 100.0
+
+[node name="SFXLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1254554404]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="PanelContainer/VBoxContainer" unique_id=1233592488]
+layout_mode = 2
+value = 100.0
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2016382523]
+layout_mode = 2
+text = "Back"
+flat = true
+
+[connection signal="toggled" from="PanelContainer/VBoxContainer/InvertXAxisCheckBox" to="." method="_on_invert_x_axis_check_box_toggled"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/InvertYAxisCheckBox" to="." method="_on_invert_y_axis_check_box_toggled"]
+[connection signal="drag_ended" from="PanelContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/VBoxContainer/SoundtrackSlider" to="." method="_on_soundtrack_slider_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

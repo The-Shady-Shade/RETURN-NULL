@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cymfx3fb8onqm"]
+
+[ext_resource type="Script" uid="uid://780sc5uhm0cv" path="res://scripts/menu/intro.gd" id="1_bl511"]
+
+[node name="Intro" type="Control" unique_id=16172743 node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bl511")
+lines = Array[String](["Hello World", "Wassup Bro", "Yeyeye"])
+label = NodePath("PanelContainer/RichTextLabel")
+world_path = "uid://b1slwu33ywm5d"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=620531574]
+custom_minimum_size = Vector2(640, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer" unique_id=2014236265]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

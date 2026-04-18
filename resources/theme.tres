@@ -1,0 +1,38 @@
+[gd_resource type="Theme" format=3 uid="uid://btx6n5eqlnff8"]
+
+[ext_resource type="FontFile" uid="uid://ddesujdys0bgj" path="res://resources/BoldPixels.ttf" id="1_d4nwg"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_d4nwg"]
+color = Color(1, 1, 1, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4nwg"]
+bg_color = Color(0.019607844, 0, 0.101960786, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+shadow_color = Color(0.44313726, 0.44313726, 1, 0.6)
+shadow_size = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7ct1h"]
+color = Color(1, 1, 1, 1)
+thickness = 2
+vertical = true
+
+[resource]
+default_font = ExtResource("1_d4nwg")
+default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.44313726, 0.44313726, 1, 0.6)
+Button/constants/outline_size = 8
+HSeparator/styles/separator = SubResource("StyleBoxLine_d4nwg")
+Label/colors/font_shadow_color = Color(0.44313726, 0.44313726, 1, 0.6)
+Label/constants/shadow_outline_size = 8
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_d4nwg")
+VSeparator/styles/separator = SubResource("StyleBoxLine_7ct1h")

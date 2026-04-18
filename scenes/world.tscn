@@ -1,0 +1,363 @@
+[gd_scene format=3 uid="uid://b1slwu33ywm5d"]
+
+[ext_resource type="PackedScene" uid="uid://cuutkagxm6kgs" path="res://scenes/spaceship.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://cwpcyq3ch3e3l" path="res://textures/skybox.png" id="1_rwgxs"]
+[ext_resource type="Script" uid="uid://hifvyvwm1ni8" path="res://scripts/skybox_follower.gd" id="2_4wyf3"]
+[ext_resource type="Shader" uid="uid://bdtu24wqq2yvn" path="res://shaders/skybox/planet.gdshader" id="3_qfnet"]
+[ext_resource type="PackedScene" uid="uid://e4qaawt7wqkk" path="res://scenes/display/map.tscn" id="4_w7kh3"]
+[ext_resource type="PackedScene" uid="uid://ddmn2urpu1kok" path="res://scenes/display/speedometer.tscn" id="5_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://c0d2hbepxe2l6" path="res://scenes/display/status.tscn" id="6_7r4gi"]
+[ext_resource type="Shader" uid="uid://bl77q2d5yd3tg" path="res://shaders/skybox/sun.gdshader" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://dputmgnh6ok6" path="res://scenes/display/task.tscn" id="7_q5onr"]
+[ext_resource type="Shader" uid="uid://ckxib5k7qedxf" path="res://shaders/skybox/black_hole.gdshader" id="8_4mrxx"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4wyf3"]
+panorama = ExtResource("1_rwgxs")
+
+[sub_resource type="Sky" id="Sky_k0juu"]
+sky_material = SubResource("PanoramaSkyMaterial_4wyf3")
+
+[sub_resource type="Environment" id="Environment_nnsk1"]
+background_mode = 2
+sky = SubResource("Sky_k0juu")
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w7kh3"]
+viewport_path = NodePath("MapViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3hyu"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_w7kh3")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4mrxx"]
+seed = 29
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7r4gi"]
+noise = SubResource("FastNoiseLite_4mrxx")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w7kh3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e3hyu"]
+noise = SubResource("FastNoiseLite_w7kh3")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5onr"]
+render_priority = 0
+shader = ExtResource("6_qfnet")
+shader_parameter/Glow_Power = 3.0
+shader_parameter/Lightness_Difference = 3.0
+shader_parameter/Sun_Color = Color(0.7721211, 0.6387359, 1.1135869, 1)
+shader_parameter/voronoi_noise = SubResource("NoiseTexture2D_e3hyu")
+shader_parameter/emission_noise = SubResource("NoiseTexture2D_7r4gi")
+shader_parameter/waveSpeed = 0.1
+shader_parameter/fresnel = 1.50000007125
+shader_parameter/scale = 0.50000002375
+shader_parameter/blendSharpness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_jhx03"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7141"]
+render_priority = 0
+shader = ExtResource("3_qfnet")
+shader_parameter/light = Color(0.50250393, 0.4540398, 0.9999868, 1)
+shader_parameter/light_power = 0.76
+shader_parameter/light_str = 1.0
+shader_parameter/fresnel_str = 0.385
+shader_parameter/rim_pow = 0.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_color_str = 0.3
+shader_parameter/rim_ems_str = 0.0
+shader_parameter/rim_ems_pow = 0.0
+shader_parameter/rim_ems_str2 = 0.0
+shader_parameter/rim_ems_pow2 = 0.0
+shader_parameter/rim_color2 = Color(0.48235294, 0.12156863, 0.81960785, 1)
+shader_parameter/rim_color_str2 = 1.0
+shader_parameter/mix_rou = 0.0
+shader_parameter/max_rou = 0.0
+shader_parameter/city_dark = 0.0
+shader_parameter/city_light = 0.0
+shader_parameter/Cloud = 0.0
+shader_parameter/Cloud_speed = 0.0
+shader_parameter/Cloud_color = Color(0, 0, 0, 1)
+shader_parameter/CloudNormal_scale = 0.0
+shader_parameter/plane_Normal_Scale = 0.0
+shader_parameter/ems_str = 0.405
+
+[sub_resource type="SphereMesh" id="SphereMesh_i7141"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mrxx"]
+render_priority = 0
+shader = ExtResource("3_qfnet")
+shader_parameter/light = Color(1, 0.45490196, 0, 1)
+shader_parameter/light_power = 0.53
+shader_parameter/light_str = 1.385
+shader_parameter/fresnel_str = 0.385
+shader_parameter/rim_pow = 0.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_color_str = 0.3
+shader_parameter/rim_ems_str = 0.0
+shader_parameter/rim_ems_pow = 0.0
+shader_parameter/rim_ems_str2 = 0.0
+shader_parameter/rim_ems_pow2 = 0.0
+shader_parameter/rim_color2 = Color(1, 0, 0.3019608, 1)
+shader_parameter/rim_color_str2 = 1.0
+shader_parameter/mix_rou = 0.0
+shader_parameter/max_rou = 0.0
+shader_parameter/city_dark = 0.0
+shader_parameter/city_light = 0.0
+shader_parameter/Cloud = 0.0
+shader_parameter/Cloud_speed = 0.0
+shader_parameter/Cloud_color = Color(0, 0, 0, 1)
+shader_parameter/CloudNormal_scale = 0.0
+shader_parameter/plane_Normal_Scale = 0.0
+shader_parameter/ems_str = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7r4gi"]
+render_priority = 0
+shader = ExtResource("3_qfnet")
+shader_parameter/light = Color(1, 0.45490196, 0.7411765, 1)
+shader_parameter/light_power = 0.53
+shader_parameter/light_str = 1.385
+shader_parameter/fresnel_str = 0.385
+shader_parameter/rim_pow = 0.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_color_str = 0.3
+shader_parameter/rim_ems_str = 0.0
+shader_parameter/rim_ems_pow = 0.0
+shader_parameter/rim_ems_str2 = 0.0
+shader_parameter/rim_ems_pow2 = 0.0
+shader_parameter/rim_color2 = Color(0.33333334, 0.4117647, 1, 1)
+shader_parameter/rim_color_str2 = 1.0
+shader_parameter/mix_rou = 0.0
+shader_parameter/max_rou = 0.0
+shader_parameter/city_dark = 0.0
+shader_parameter/city_light = 0.0
+shader_parameter/Cloud = 0.0
+shader_parameter/Cloud_speed = 0.0
+shader_parameter/Cloud_color = Color(0, 0, 0, 1)
+shader_parameter/CloudNormal_scale = 0.0
+shader_parameter/plane_Normal_Scale = 0.0
+shader_parameter/ems_str = 0.265
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7r4gi"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w7kh3"]
+noise = SubResource("FastNoiseLite_7r4gi")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3hyu"]
+render_priority = 0
+shader = ExtResource("8_4mrxx")
+shader_parameter/radius = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_w7kh3")
+shader_parameter/spin = 0.4
+shader_parameter/shadow_asymmetry = 0.5
+shader_parameter/shadow_oblateness = 0.5
+shader_parameter/frame_drag_strength = 0.5
+shader_parameter/doppler_beaming = 0.5
+shader_parameter/warp_falloff = 2.5
+shader_parameter/warp_strength = 1.0
+shader_parameter/warp_inner_edge = 0.3
+shader_parameter/color_core = Color(0.73333335, 0.22745098, 0.7294118, 1)
+shader_parameter/brightness_core = 22.0
+shader_parameter/color_hot = Color(0.4509804, 0.16470589, 0.5294118, 1)
+shader_parameter/brightness_hot = 10.0
+shader_parameter/color_mid = Color(1, 0.3019608, 0.43529412, 1)
+shader_parameter/brightness_mid = 6.5
+shader_parameter/color_cool = Color(1, 0.5254902, 0.22352941, 1)
+shader_parameter/brightness_cool = 4.0
+shader_parameter/color_outer = Color(0.9490196, 0, 0.14901961, 1)
+shader_parameter/brightness_outer = 2.2
+shader_parameter/color_edge = Color(0.7, 0.08, 0.02, 1)
+shader_parameter/brightness_edge = 1.1
+shader_parameter/gradient_stop0 = 0.08
+shader_parameter/gradient_stop1 = 0.25
+shader_parameter/gradient_stop2 = 0.55
+shader_parameter/gradient_stop3 = 0.8
+shader_parameter/color_saturation = 1.5
+shader_parameter/grav_redshift_strength = 0.85
+shader_parameter/turbulence_strength = 0.28
+shader_parameter/turbulence_scale = 2.5
+shader_parameter/turbulence_speed = 0.35
+shader_parameter/density_heat_strength = 0.55
+shader_parameter/density_heat_power = 0.3
+shader_parameter/rs = 0.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_q5onr"]
+radius = 8.0
+height = 6.0
+
+[sub_resource type="Curve" id="Curve_7r4gi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w7kh3"]
+curve = SubResource("Curve_7r4gi")
+
+[sub_resource type="Curve" id="Curve_e3hyu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q5onr"]
+curve = SubResource("Curve_e3hyu")
+
+[sub_resource type="Curve" id="Curve_jhx03"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_o8fc1"]
+curve = SubResource("Curve_jhx03")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w7kh3"]
+emission_shape = 3
+emission_box_extents = Vector3(16, 16, 16)
+direction = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_o8fc1")
+alpha_curve = SubResource("CurveTexture_w7kh3")
+emission_curve = SubResource("CurveTexture_q5onr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7kh3"]
+transparency = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_e3hyu"]
+material = SubResource("StandardMaterial3D_w7kh3")
+size = Vector3(0.025, 0.025, 0.025)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i7141"]
+size = Vector2(2.606, 2.044)
+
+[node name="World" type="Node3D" unique_id=1986435756]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1013552424]
+environment = SubResource("Environment_nnsk1")
+
+[node name="MapViewport" type="SubViewport" parent="." unique_id=1190690225]
+size = Vector2i(885, 692)
+
+[node name="MapCamera" type="Camera3D" parent="MapViewport" unique_id=2143863802]
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 100, 0)
+cull_mask = 1047554
+current = true
+fov = 100.0
+size = 60.0
+
+[node name="SkyboxLayer" type="CanvasLayer" parent="." unique_id=1173957507]
+
+[node name="SkyboxViewportContainer" type="SubViewportContainer" parent="SkyboxLayer" unique_id=911130070]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SkyboxViewport" type="SubViewport" parent="SkyboxLayer/SkyboxViewportContainer" unique_id=1464831022]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="SkyboxFollower" type="Node3D" parent="SkyboxLayer/SkyboxViewportContainer/SkyboxViewport" unique_id=1198393807]
+script = ExtResource("2_4wyf3")
+
+[node name="SkyboxCamera" type="Camera3D" parent="SkyboxLayer/SkyboxViewportContainer/SkyboxViewport/SkyboxFollower" unique_id=314901288]
+cull_mask = 4
+
+[node name="GameLayer" type="CanvasLayer" parent="." unique_id=317139473]
+
+[node name="GameViewportContainer" type="SubViewportContainer" parent="GameLayer" unique_id=1372848749]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="GameViewport" type="SubViewport" parent="GameLayer/GameViewportContainer" unique_id=668966523]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 3
+audio_listener_enable_3d = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="SpaceShip" parent="GameLayer/GameViewportContainer/GameViewport" unique_id=1050205277 instance=ExtResource("1_nnsk1")]
+
+[node name="DisplayManager" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip" index="5" unique_id=787184768 node_paths=PackedStringArray("displays")]
+displays = {
+NodePath("Map"): ExtResource("4_w7kh3"),
+NodePath("Speedometer"): ExtResource("5_e3hyu"),
+NodePath("Status"): ExtResource("6_7r4gi"),
+NodePath("Task"): ExtResource("7_q5onr")
+}
+
+[node name="Map" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="0" unique_id=668819653]
+material_override = SubResource("StandardMaterial3D_e3hyu")
+
+[node name="Status" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="1" unique_id=1163750855]
+material_override = SubResource("StandardMaterial3D_e3hyu")
+
+[node name="Speedometer" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="2" unique_id=2117113226]
+material_override = SubResource("StandardMaterial3D_e3hyu")
+
+[node name="Task" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="3" unique_id=157265324]
+material_override = SubResource("StandardMaterial3D_e3hyu")
+
+[node name="SkyboxEnvironment" type="Node3D" parent="." unique_id=821814467]
+
+[node name="Star" type="MeshInstance3D" parent="SkyboxEnvironment" unique_id=1925606631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.302273)
+visible = false
+layers = 4
+material_override = SubResource("ShaderMaterial_q5onr")
+mesh = SubResource("SphereMesh_jhx03")
+
+[node name="Planet" type="MeshInstance3D" parent="SkyboxEnvironment" unique_id=446519244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.715867, 0, 4.900276)
+layers = 4
+material_override = SubResource("ShaderMaterial_i7141")
+mesh = SubResource("SphereMesh_i7141")
+
+[node name="Planet2" type="MeshInstance3D" parent="SkyboxEnvironment" unique_id=316760292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1369095, 0, 16.912783)
+layers = 4
+material_override = SubResource("ShaderMaterial_4mrxx")
+mesh = SubResource("SphereMesh_i7141")
+
+[node name="Planet3" type="MeshInstance3D" parent="SkyboxEnvironment" unique_id=772028145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.487838, 0, -2.974825)
+layers = 4
+material_override = SubResource("ShaderMaterial_7r4gi")
+mesh = SubResource("SphereMesh_i7141")
+
+[node name="BlackHole" type="MeshInstance3D" parent="SkyboxEnvironment" unique_id=86805491]
+transform = Transform3D(0.6094497, 0.26632532, -0.7467543, -0.400429, 0.9163278, -1.137641e-08, 0.6842717, 0.29902205, 0.6651, -7.005849, 0, -18.508455)
+layers = 4
+material_override = SubResource("ShaderMaterial_e3hyu")
+mesh = SubResource("SphereMesh_q5onr")
+
+[node name="Stars" type="GPUParticles3D" parent="SkyboxEnvironment" unique_id=1961629567]
+layers = 4
+amount = 48
+lifetime = 5.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_w7kh3")
+draw_pass_1 = SubResource("BoxMesh_e3hyu")
+
+[node name="Boundary" type="MeshInstance3D" parent="." unique_id=16063930]
+transform = Transform3D(117, 0, 0, 0, 117, 0, 0, 0, 117, 0, -2.749775, 0)
+layers = 2
+mesh = SubResource("PlaneMesh_i7141")
+
+[editable path="GameLayer/GameViewportContainer/GameViewport/SpaceShip"]
+[editable path="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh"]

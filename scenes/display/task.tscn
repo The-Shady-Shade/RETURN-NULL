@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dputmgnh6ok6"]
+
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/vhs_shader_material.tres" id="1_iqvgq"]
+[ext_resource type="Script" uid="uid://d1mb3pxswuh3s" path="res://scripts/display/task.gd" id="1_qrsyl"]
+
+[node name="Task" type="Control" unique_id=624578858]
+custom_minimum_size = Vector2(1035, 343)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -517.5
+offset_top = -171.5
+offset_right = 517.5
+offset_bottom = 171.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qrsyl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1377476493]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -20.0
+offset_right = 37.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 28
+
+[node name="NPanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1293862480]
+layout_mode = 2
+
+[node name="NLabel" type="Label" parent="HBoxContainer/NPanelContainer" unique_id=180550847]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "?"
+
+[node name="EPanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=540465773]
+layout_mode = 2
+
+[node name="ELabel" type="Label" parent="HBoxContainer/EPanelContainer" unique_id=1336406665]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "?"
+
+[node name="BPanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1434104161]
+layout_mode = 2
+
+[node name="BLabel" type="Label" parent="HBoxContainer/BPanelContainer" unique_id=448341648]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "?"
+
+[node name="UPanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1955492921]
+layout_mode = 2
+
+[node name="ULabel" type="Label" parent="HBoxContainer/UPanelContainer" unique_id=147730735]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "?"
+
+[node name="LPanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1019939378]
+layout_mode = 2
+
+[node name="LLabel" type="Label" parent="HBoxContainer/LPanelContainer" unique_id=486549870]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "?"
+
+[node name="APanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1213636119]
+layout_mode = 2
+
+[node name="ALabel" type="Label" parent="HBoxContainer/APanelContainer" unique_id=479848846]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "?"
+
+[node name="ShaderRect" type="ColorRect" parent="." unique_id=1069014291]
+material = ExtResource("1_iqvgq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
