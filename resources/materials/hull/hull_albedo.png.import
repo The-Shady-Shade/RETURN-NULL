@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs0f587q26pfk"
-path.s3tc="res://.godot/imported/hull_albedo.png-d34d85a286f2bf9663ef17b4ee574f82.s3tc.ctex"
+path.bptc="res://.godot/imported/hull_albedo.png-d34d85a286f2bf9663ef17b4ee574f82.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,17 +12,17 @@ metadata={
 [deps]
 
 source_file="res://resources/materials/hull/hull_albedo.png"
-dest_files=["res://.godot/imported/hull_albedo.png-d34d85a286f2bf9663ef17b4ee574f82.s3tc.ctex"]
+dest_files=["res://.godot/imported/hull_albedo.png-d34d85a286f2bf9663ef17b4ee574f82.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=2
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

@@ -1,0 +1,293 @@
+[gd_scene format=3 uid="uid://c0ga85e758i8o"]
+
+[ext_resource type="Script" uid="uid://buh2tvnftb20y" path="res://scripts/menu/ending.gd" id="1_xadrh"]
+[ext_resource type="AudioStream" uid="uid://72lm3t7mr5en" path="res://audio/sfx/text.wav" id="2_7hu8u"]
+[ext_resource type="Shader" uid="uid://ckxib5k7qedxf" path="res://shaders/skybox/black_hole.gdshader" id="3_7hu8u"]
+[ext_resource type="Environment" uid="uid://caxsjqpmhtaxb" path="res://resources/world_environment.tres" id="3_t2www"]
+[ext_resource type="Shader" uid="uid://vv7afhiywu4c" path="res://shaders/transition.gdshader" id="3_y6nyv"]
+[ext_resource type="PackedScene" uid="uid://bv0y2jx7fvurn" path="res://meshes/spaceship/spaceship.blend" id="5_5c6cd"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t2www"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5c6cd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w7kh3"]
+noise = SubResource("FastNoiseLite_5c6cd")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6nyv"]
+render_priority = 0
+shader = ExtResource("3_7hu8u")
+shader_parameter/radius = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_w7kh3")
+shader_parameter/spin = 0.4
+shader_parameter/shadow_asymmetry = 0.5
+shader_parameter/shadow_oblateness = 0.5
+shader_parameter/frame_drag_strength = 0.5
+shader_parameter/doppler_beaming = 0.5
+shader_parameter/warp_falloff = 2.5
+shader_parameter/warp_strength = 1.0
+shader_parameter/warp_inner_edge = 0.3
+shader_parameter/color_core = Color(0.73333335, 0.22745098, 0.7294118, 1)
+shader_parameter/brightness_core = 22.0
+shader_parameter/color_hot = Color(0.4509804, 0.16470589, 0.5294118, 1)
+shader_parameter/brightness_hot = 10.0
+shader_parameter/color_mid = Color(1, 0.3019608, 0.43529412, 1)
+shader_parameter/brightness_mid = 6.5
+shader_parameter/color_cool = Color(1, 0.5254902, 0.22352941, 1)
+shader_parameter/brightness_cool = 4.0
+shader_parameter/color_outer = Color(0.9490196, 0, 0.14901961, 1)
+shader_parameter/brightness_outer = 2.2
+shader_parameter/color_edge = Color(0.7, 0.08, 0.02, 1)
+shader_parameter/brightness_edge = 1.1
+shader_parameter/gradient_stop0 = 0.08
+shader_parameter/gradient_stop1 = 0.25
+shader_parameter/gradient_stop2 = 0.55
+shader_parameter/gradient_stop3 = 0.8
+shader_parameter/color_saturation = 1.5
+shader_parameter/grav_redshift_strength = 0.85
+shader_parameter/turbulence_strength = 0.28
+shader_parameter/turbulence_scale = 2.5
+shader_parameter/turbulence_speed = 0.35
+shader_parameter/density_heat_strength = 0.55
+shader_parameter/density_heat_power = 0.3
+shader_parameter/rs = 0.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_3g584"]
+radius = 8.0
+height = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3g584"]
+shader = ExtResource("3_y6nyv")
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 10.0
+
+[sub_resource type="Animation" id="Animation_y6nyv"]
+resource_name = "Outro"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpaceShip:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.458, 0, 11.025), Vector3(1.978, 0.614, 4.324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpaceShip:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5760323, -0.13962634), Vector3(0, 1.8465583, 0.14137167)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TransitionRect:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 6, 6.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 0.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RichTextLabel:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="Animation" id="Animation_3g584"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpaceShip:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.458, 0, 11.025)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpaceShip:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5760323, -0.13962634)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TransitionRect:material:shader_parameter/progress")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RichTextLabel:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3j4ht"]
+_data = {
+&"Outro": SubResource("Animation_y6nyv"),
+&"RESET": SubResource("Animation_3g584")
+}
+
+[node name="Ending" type="Control" unique_id=16172743 node_paths=PackedStringArray("label", "animation", "text_sound")]
+custom_minimum_size = Vector2(671, 732)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xadrh")
+label = NodePath("RichTextLabel")
+animation = NodePath("AnimationPlayer")
+text_sound = NodePath("TextSound")
+main_menu_path = "uid://binxhqdu5nxh"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2014236265]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -160.0
+offset_right = 316.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.44313726, 0.44313726, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.44313726, 0.44313726, 1, 0)
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextSound" type="AudioStreamPlayer" parent="." unique_id=1912717443]
+stream = ExtResource("2_7hu8u")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1048563437]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_t2www")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1754234452]
+size = Vector2i(1280, 720)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=1940484968]
+environment = ExtResource("3_t2www")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1295646990]
+transform = Transform3D(0.9005514, -0.017216707, 0.43440884, -0.091621876, 0.96925825, 0.2283509, -0.42498574, -0.24544303, 0.8712894, 6.645612, 2.7414103, 13.704334)
+fov = 57.0
+
+[node name="BlackHole" type="MeshInstance3D" parent="SubViewport" unique_id=1184496566]
+transform = Transform3D(0.6094497, 0.26632532, -0.7467543, -0.400429, 0.9163278, -1.137641e-08, 0.6842717, 0.29902205, 0.6651, 0, 0, 0)
+layers = 4
+material_override = SubResource("ShaderMaterial_y6nyv")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_3g584")
+
+[node name="SpaceShip" parent="SubViewport" unique_id=2076564305 instance=ExtResource("5_5c6cd")]
+transform = Transform3D(-0.00041479792, -5.8296053e-05, 0.0799989, -0.011133848, 0.07922144, 0, -0.079220355, -0.011133696, -0.00041887438, 2.458, 0, 11.025)
+
+[node name="Hull" parent="SubViewport/SpaceShip" index="0" unique_id=1010366920]
+cast_shadow = 0
+
+[node name="PilotSeat" parent="SubViewport/SpaceShip" index="1" unique_id=1612671322]
+cast_shadow = 0
+
+[node name="PilotPanel" parent="SubViewport/SpaceShip" index="2" unique_id=1272269332]
+cast_shadow = 0
+
+[node name="TransitionRect" type="ColorRect" parent="." unique_id=914571279]
+material = SubResource("ShaderMaterial_3g584")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.019607844, 0, 0.101960786, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=506391853]
+root_node = NodePath("../SubViewport")
+libraries/ = SubResource("AnimationLibrary_3j4ht")
+
+[editable path="SubViewport/SpaceShip"]

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d4j6iok1bq8jg"]
+
+[ext_resource type="PackedScene" uid="uid://k7y8yakbya0b" path="res://meshes/satellite/satellite.blend" id="1_4bjab"]
+[ext_resource type="Script" uid="uid://c5nwebwyrhxi7" path="res://scripts/satellite.gd" id="1_npdc8"]
+[ext_resource type="PackedScene" uid="uid://s8pl0i5kin2c" path="res://scenes/display/icon_component.tscn" id="2_npdc8"]
+[ext_resource type="Texture2D" uid="uid://ccreeng42u0jj" path="res://textures/map_icons/signal_icon.png" id="3_djxv1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ak3x6"]
+points = PackedVector3Array(5.936035, 10.681279, 0, 5.48357, 10.681279, 2.2708416, 12.563618, 2.7350903, 0.72750616, 12.563618, 2.7350903, -0.7286687, 5.48357, 10.681279, -2.2720044, 4.195587, 10.681279, 4.1965256, 13.131771, 0.89162254, 0.72750616, 2.2700396, 10.681279, 5.484188, 13.131771, 0.89162254, -0.7286687, 2.2700396, 10.681279, -5.4853506, 4.195587, 10.681279, -4.197688, 13.131771, -1.1707325, 0.72750616, 12.563618, -2.9057612, 0.72750616, -0.0025691986, 10.681279, 5.936265, -0.0025691986, -9.831819, 1.9187102, 0.732687, -9.831819, 1.7722793, 13.131771, -1.1707325, -0.7286687, 12.563618, -2.9057612, -0.7286687, 0.732687, -9.831819, -1.7734418, -0.0025691986, -9.831819, -1.9198728, -0.0025691986, 10.681279, -5.936265, 1.7712994, -9.831819, 0.7333169, 1.9178362, -9.831819, 0, 1.354826, -9.831819, 1.3562298, -2.2726068, 10.681279, 5.484188, -0.7352543, -9.831819, 1.7722793, 1.7712994, -9.831819, -0.7344794, 1.354826, -9.831819, -1.3573918, -0.7352543, -9.831819, -1.7734418, -2.2726068, 10.681279, -5.4853506, -4.1981535, 10.681279, 4.1965256, -12.566186, 2.7350903, 0.72750616, -13.131767, 0.89162254, 0.72750616, -13.131767, -1.1707325, 0.72750616, -12.566186, -2.9057612, 0.72750616, -1.3573933, -9.831819, 1.3562298, -1.3573933, -9.831819, -1.3573918, -12.566186, -2.9057612, -0.7286687, -13.131767, -1.1707325, -0.7286687, -13.131767, 0.89162254, -0.7286687, -12.566186, 2.7350903, -0.7286687, -4.1981535, 10.681279, -4.197688, -5.486137, 10.681279, 2.2708416, -5.9386015, 10.681279, 0, -1.9204035, -9.831819, 0, -1.7738667, -9.831819, 0.7333169, -1.7738667, -9.831819, -0.7344794, -5.486137, 10.681279, -2.2720044)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4bjab"]
+radius = 50.0
+
+[node name="Satellite" type="StaticBody3D" unique_id=1449118391 node_paths=PackedStringArray("signal_area", "mesh_instance", "icon_component")]
+collision_mask = 0
+script = ExtResource("1_npdc8")
+signal_area = NodePath("SignalArea")
+mesh_instance = NodePath("Mesh/Cylinder")
+icon_component = NodePath("IconComponent")
+
+[node name="Mesh" parent="." unique_id=1755128945 instance=ExtResource("1_4bjab")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1045005364]
+shape = SubResource("ConvexPolygonShape3D_ak3x6")
+
+[node name="SignalArea" type="Area3D" parent="." unique_id=203900697]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SignalArea" unique_id=1931290737]
+shape = SubResource("SphereShape3D_4bjab")
+
+[node name="IconComponent" parent="." unique_id=902515679 instance=ExtResource("2_npdc8")]
+icon = ExtResource("3_djxv1")
+
+[connection signal="body_entered" from="SignalArea" to="." method="_on_signal_area_body_entered"]
+[connection signal="body_exited" from="SignalArea" to="." method="_on_signal_area_body_exited"]
+
+[editable path="Mesh"]

@@ -1,11 +1,15 @@
 extends Control
 
 @export var lines: Array[String] = [
-	"",
-	"",
-	""
+	"[BOOT SEQUENCE INITIATED]",
+	"[NAVIGATION SYSTEM: ONLINE]",
+	"[SIGNAL ARRAY: CALIBRATING]",
+	"[ASTRACAT CORPORATION MESSAGE RECEIVED]",
+	"Pilot, you are assigned to recover and classify anomalous deep-space signals beyond charted sectors. Previous missions failed to return complete data.",
+	"[SIGNAL LOCK ACQUIRED]",
 ]
 @export var label: RichTextLabel
+@export var text_sound: AudioStreamPlayer
 @export_file("*.tscn") var world_path: String
 
 var text: String = ""
@@ -32,6 +36,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func display_letter() -> void:
 	label.text += text[letter_idx]
 	letter_idx += 1
+	
+	text_sound.pitch_scale = randf_range(0.8, 1.2)
+	text_sound.play()
 	
 	if letter_idx >= text.length():
 		can_advance_line = true

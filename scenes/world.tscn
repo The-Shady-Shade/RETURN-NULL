@@ -1,64 +1,40 @@
 [gd_scene format=3 uid="uid://b1slwu33ywm5d"]
 
 [ext_resource type="PackedScene" uid="uid://cuutkagxm6kgs" path="res://scenes/spaceship.tscn" id="1_nnsk1"]
-[ext_resource type="Texture2D" uid="uid://cwpcyq3ch3e3l" path="res://textures/skybox.png" id="1_rwgxs"]
+[ext_resource type="Environment" uid="uid://caxsjqpmhtaxb" path="res://resources/world_environment.tres" id="1_q5onr"]
+[ext_resource type="Script" uid="uid://b28u15ibinbh1" path="res://scripts/world.gd" id="1_xo05s"]
 [ext_resource type="Script" uid="uid://hifvyvwm1ni8" path="res://scripts/skybox_follower.gd" id="2_4wyf3"]
 [ext_resource type="Shader" uid="uid://bdtu24wqq2yvn" path="res://shaders/skybox/planet.gdshader" id="3_qfnet"]
-[ext_resource type="PackedScene" uid="uid://e4qaawt7wqkk" path="res://scenes/display/map.tscn" id="4_w7kh3"]
-[ext_resource type="PackedScene" uid="uid://ddmn2urpu1kok" path="res://scenes/display/speedometer.tscn" id="5_e3hyu"]
-[ext_resource type="PackedScene" uid="uid://c0d2hbepxe2l6" path="res://scenes/display/status.tscn" id="6_7r4gi"]
-[ext_resource type="Shader" uid="uid://bl77q2d5yd3tg" path="res://shaders/skybox/sun.gdshader" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://e4qaawt7wqkk" path="res://scenes/display/map.tscn" id="4_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://ddmn2urpu1kok" path="res://scenes/display/speedometer.tscn" id="5_q5onr"]
+[ext_resource type="PackedScene" uid="uid://c0d2hbepxe2l6" path="res://scenes/display/status.tscn" id="6_jhx03"]
 [ext_resource type="PackedScene" uid="uid://dputmgnh6ok6" path="res://scenes/display/task.tscn" id="7_q5onr"]
 [ext_resource type="Shader" uid="uid://ckxib5k7qedxf" path="res://shaders/skybox/black_hole.gdshader" id="8_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://dhu368r7ac8my" path="res://scenes/display/hp_bar.tscn" id="8_q5onr"]
+[ext_resource type="PackedScene" uid="uid://bbkpjcblvod1a" path="res://scenes/display/fuel_bar.tscn" id="9_jhx03"]
+[ext_resource type="ArrayMesh" uid="uid://h28ybjke0k5x" path="res://meshes/asteroid/asteroid.obj" id="11_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://d4j6iok1bq8jg" path="res://scenes/environment/satellite.tscn" id="12_q5onr"]
+[ext_resource type="PackedScene" uid="uid://71a6k63a6g53" path="res://scenes/environment/Fuel.tscn" id="14_o8fc1"]
+[ext_resource type="AudioStream" uid="uid://nr4jr0n2you5" path="res://audio/soundtrack/signal_transmission.mp3" id="16_dss4m"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4wyf3"]
-panorama = ExtResource("1_rwgxs")
-
-[sub_resource type="Sky" id="Sky_k0juu"]
-sky_material = SubResource("PanoramaSkyMaterial_4wyf3")
-
-[sub_resource type="Environment" id="Environment_nnsk1"]
-background_mode = 2
-sky = SubResource("Sky_k0juu")
-tonemap_mode = 3
-glow_enabled = true
-glow_intensity = 0.4
-glow_bloom = 1.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_w7kh3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_dss4m"]
 viewport_path = NodePath("MapViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3hyu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t5mc"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_w7kh3")
+albedo_texture = SubResource("ViewportTexture_dss4m")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4mrxx"]
-seed = 29
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3hyu"]
+size = Vector3(1.5, 1.5, 1.5)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7r4gi"]
-noise = SubResource("FastNoiseLite_4mrxx")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_w7kh3"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e3hyu"]
-noise = SubResource("FastNoiseLite_w7kh3")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5onr"]
-render_priority = 0
-shader = ExtResource("6_qfnet")
-shader_parameter/Glow_Power = 3.0
-shader_parameter/Lightness_Difference = 3.0
-shader_parameter/Sun_Color = Color(0.7721211, 0.6387359, 1.1135869, 1)
-shader_parameter/voronoi_noise = SubResource("NoiseTexture2D_e3hyu")
-shader_parameter/emission_noise = SubResource("NoiseTexture2D_7r4gi")
-shader_parameter/waveSpeed = 0.1
-shader_parameter/fresnel = 1.50000007125
-shader_parameter/scale = 0.50000002375
-shader_parameter/blendSharpness = 0.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_jhx03"]
+[sub_resource type="MeshLibrary" id="MeshLibrary_jhx03"]
+item/0/name = "Asteroid"
+item/0/mesh = ExtResource("11_e3hyu")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 0
+item/0/shapes = [SubResource("BoxShape3D_e3hyu"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7141"]
 render_priority = 0
@@ -74,7 +50,7 @@ shader_parameter/rim_ems_str = 0.0
 shader_parameter/rim_ems_pow = 0.0
 shader_parameter/rim_ems_str2 = 0.0
 shader_parameter/rim_ems_pow2 = 0.0
-shader_parameter/rim_color2 = Color(0.48235294, 0.12156863, 0.81960785, 1)
+shader_parameter/rim_color2 = Color(0, 0.12156863, 0.81960785, 1)
 shader_parameter/rim_color_str2 = 1.0
 shader_parameter/mix_rou = 0.0
 shader_parameter/max_rou = 0.0
@@ -145,7 +121,7 @@ shader_parameter/ems_str = 0.265
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7r4gi"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w7kh3"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o8fc1"]
 noise = SubResource("FastNoiseLite_7r4gi")
 seamless = true
 
@@ -153,7 +129,7 @@ seamless = true
 render_priority = 0
 shader = ExtResource("8_4mrxx")
 shader_parameter/radius = 0.0
-shader_parameter/noise = SubResource("NoiseTexture2D_w7kh3")
+shader_parameter/noise = SubResource("NoiseTexture2D_o8fc1")
 shader_parameter/spin = 0.4
 shader_parameter/shadow_asymmetry = 0.5
 shader_parameter/shadow_oblateness = 0.5
@@ -234,23 +210,66 @@ emission_energy_multiplier = 8.0
 material = SubResource("StandardMaterial3D_w7kh3")
 size = Vector3(0.025, 0.025, 0.025)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_i7141"]
-size = Vector2(2.606, 2.044)
+[sub_resource type="Animation" id="Animation_e3hyu"]
+resource_name = "AsteroidsRotation"
+length = 150.0
+step = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AsteroidField:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 150),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.06981317, 0, 0.017453292), Vector3(0.06981317, -6.2831855, 0.017453292)]
+}
 
-[node name="World" type="Node3D" unique_id=1986435756]
+[sub_resource type="Animation" id="Animation_q5onr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AsteroidField:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhx03"]
+_data = {
+&"AsteroidsRotation": SubResource("Animation_e3hyu"),
+&"RESET": SubResource("Animation_q5onr")
+}
+
+[node name="World" type="Node3D" unique_id=1986435756 node_paths=PackedStringArray("soundtrack_player")]
+script = ExtResource("1_xo05s")
+soundtrack_player = NodePath("SoundtrackPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1013552424]
-environment = SubResource("Environment_nnsk1")
+environment = ExtResource("1_q5onr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=310501983]
+transform = Transform3D(-0.89040357, 0, -0.45517194, 0, 1, 0, 0.45517194, 0, -0.89040357, -5.806655, 0, -12.680662)
+light_color = Color(0.8901961, 0.41568628, 0.38431373, 1)
 
 [node name="MapViewport" type="SubViewport" parent="." unique_id=1190690225]
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 2
 size = Vector2i(885, 692)
 
 [node name="MapCamera" type="Camera3D" parent="MapViewport" unique_id=2143863802]
-transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 100, 0)
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 189.08931, 0)
 cull_mask = 1047554
 current = true
-fov = 100.0
-size = 60.0
+fov = 140.0
+size = 100.0
 
 [node name="SkyboxLayer" type="CanvasLayer" parent="." unique_id=1173957507]
 
@@ -264,11 +283,13 @@ stretch = true
 
 [node name="SkyboxViewport" type="SubViewport" parent="SkyboxLayer/SkyboxViewportContainer" unique_id=1464831022]
 handle_input_locally = false
+canvas_item_default_texture_filter = 2
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="SkyboxFollower" type="Node3D" parent="SkyboxLayer/SkyboxViewportContainer/SkyboxViewport" unique_id=1198393807]
+[node name="SkyboxFollower" type="Node3D" parent="SkyboxLayer/SkyboxViewportContainer/SkyboxViewport" unique_id=1198393807 node_paths=PackedStringArray("target")]
 script = ExtResource("2_4wyf3")
+target = NodePath("../../../../GameLayer/GameViewportContainer/GameViewport/SpaceShip/Camera3D")
 
 [node name="SkyboxCamera" type="Camera3D" parent="SkyboxLayer/SkyboxViewportContainer/SkyboxViewport/SkyboxFollower" unique_id=314901288]
 cull_mask = 4
@@ -293,34 +314,45 @@ render_target_update_mode = 4
 
 [node name="SpaceShip" parent="GameLayer/GameViewportContainer/GameViewport" unique_id=1050205277 instance=ExtResource("1_nnsk1")]
 
-[node name="DisplayManager" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip" index="5" unique_id=787184768 node_paths=PackedStringArray("displays")]
+[node name="DisplayManager" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip" index="4" unique_id=787184768 node_paths=PackedStringArray("displays")]
 displays = {
-NodePath("Map"): ExtResource("4_w7kh3"),
-NodePath("Speedometer"): ExtResource("5_e3hyu"),
-NodePath("Status"): ExtResource("6_7r4gi"),
-NodePath("Task"): ExtResource("7_q5onr")
+NodePath("Map"): ExtResource("4_e3hyu"),
+NodePath("Speedometer"): ExtResource("5_q5onr"),
+NodePath("Status"): ExtResource("6_jhx03"),
+NodePath("Task"): ExtResource("7_q5onr"),
+NodePath("HPBar"): ExtResource("8_q5onr"),
+NodePath("FuelBar"): ExtResource("9_jhx03")
 }
 
 [node name="Map" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="0" unique_id=668819653]
-material_override = SubResource("StandardMaterial3D_e3hyu")
+material_override = SubResource("StandardMaterial3D_7t5mc")
 
 [node name="Status" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="1" unique_id=1163750855]
-material_override = SubResource("StandardMaterial3D_e3hyu")
+material_override = SubResource("StandardMaterial3D_7t5mc")
 
-[node name="Speedometer" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="2" unique_id=2117113226]
-material_override = SubResource("StandardMaterial3D_e3hyu")
+[node name="HPBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="2" unique_id=822098046]
+material_override = SubResource("StandardMaterial3D_7t5mc")
 
-[node name="Task" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="3" unique_id=157265324]
-material_override = SubResource("StandardMaterial3D_e3hyu")
+[node name="FuelBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="3" unique_id=470433383]
+material_override = SubResource("StandardMaterial3D_7t5mc")
+
+[node name="Speedometer" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="4" unique_id=2117113226]
+material_override = SubResource("StandardMaterial3D_7t5mc")
+
+[node name="Task" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="5" unique_id=157265324]
+material_override = SubResource("StandardMaterial3D_7t5mc")
+
+[node name="AsteroidField" type="GridMap" parent="." unique_id=431607759]
+mesh_library = SubResource("MeshLibrary_jhx03")
+cell_size = Vector3(4, 4, 4)
+cell_scale = 3.0
+collision_mask = 33
+data = {
+"cells": PackedInt32Array(65510, 65514, 786432, 23, 65516, 786432, 65556, 8, 786432, 131052, 12, 786432, 196628, 24, 786432, 262112, 65532, 786432, -65557, 20, 786432, -196597, 22, 786432, -131057, 65532, 786432, 458740, 65518, 786432, 655374, 65531, 786432, 917472, 9, 786432, 1179619, 65526, 786432, -786408, 65487, 786432, -786427, 15, 786432, -589831, 65515, 786432, -524294, 12, 786432, -655388, 0, 786432, -1048602, 65492, 786432, -1114107, 65521, 786432, -1114089, 33, 786432, -1114095, 58, 786432, -1048615, 31, 786432, -917558, 0, 786432, -917468, 65509, 786432, -851976, 65487, 786432, -851992, 60, 786432, -851979, 23, 786432, -393227, 53, 786432, 35, 65531, 786432, 196667, 65530, 786432, 458800, 49, 786432, 917465, 55, 786432, 1245142, 30, 786432, 1703969, 65525, 786432, 1572824, 65502, 786432, 1310669, 65523, 786432, 589767, 8, 786432, 393162, 65515, 786432, 458811, 18, 786432, 1048645, 51, 786432, 1572952, 65488, 786432, 1769498, 65471, 786432, 1703884, 63, 196608, 1638460, 77, 196608, 1638481, 65523, 196608, 1638436, 65442, 196608, 1703855, 65456, 196608, 1703781, 65515, 196608, 1703847, 24, 196608, 1703871, 9, 196608, 1703917, 65472, 196608, 1638508, 5, 196608, 1114042, 65505, 196608, 917405, 65510, 196608, 655402, 70, 196608, 458771, 89, 196608, 327624, 52, 196608, 196504, 12, 196608, -90, 65483, 196608, -196686, 65435, 196608, -327700, 65428, 196608, -589790, 65467, 196608, -786389, 7, 196608, -982945, 65532, 196608, -1114036, 65471, 196608, -1310570, 21, 196608, -1507265, 72, 196608, -1572863, 66, 196608, -1704047, 65516, 196608, -1704029, 65439, 196608, -1507365, 65448, 196608, -1245229, 65426, 196608, -1048617, 65468, 196608, -917456, 65386, 196608, -786368, 65432, 196608, -589695, 16, 196608, -393191, 65434, 196608, -262073, 65521, 196608, -65446, 65509, 196608, 65601, 31, 196608, 196692, 62, 196608, 393192, 110, 196608, 458854, 65525, 196608, 655432, 27, 196608, 917469, 68, 196608, 1048477, 49, 196608, 1179582, 49, 196608, 1310636, 65521, 196608, 1441708, 65485, 196608, 1572788, 65457, 196608, 1703878, 65440, 196608, 1834983, 65425, 196608, 1900529, 65396, 196608, 2031564, 65417, 196608, 2162649, 65446, 196608, 2228144, 65440, 196608, 2359248, 65420, 196608, 2424791, 65437, 196608, 2490387, 65440, 196608, 2555826, 131, 196608, 2555887, 157, 196608, 2490426, 166, 196608, 2424834, 139, 196608, 2293780, 113, 196608, 2162730, 154, 196608, 2031707, 135, 196608, 1573055, 65472, 196608, 1573030, 65514, 196608, 1572971, 85, 196608)
+}
+metadata/_editor_floor_ = Vector3(0, 24, 0)
 
 [node name="SkyboxEnvironment" type="Node3D" parent="." unique_id=821814467]
-
-[node name="Star" type="MeshInstance3D" parent="SkyboxEnvironment" unique_id=1925606631]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.302273)
-visible = false
-layers = 4
-material_override = SubResource("ShaderMaterial_q5onr")
-mesh = SubResource("SphereMesh_jhx03")
 
 [node name="Planet" type="MeshInstance3D" parent="SkyboxEnvironment" unique_id=446519244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.715867, 0, 4.900276)
@@ -354,10 +386,48 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_w7kh3")
 draw_pass_1 = SubResource("BoxMesh_e3hyu")
 
-[node name="Boundary" type="MeshInstance3D" parent="." unique_id=16063930]
-transform = Transform3D(117, 0, 0, 0, 117, 0, 0, 0, 117, 0, -2.749775, 0)
-layers = 2
-mesh = SubResource("PlaneMesh_i7141")
+[node name="Satellites" type="Node3D" parent="." unique_id=1257642756]
+
+[node name="Satellite" parent="Satellites" unique_id=1449118391 instance=ExtResource("12_q5onr")]
+transform = Transform3D(0.8555024, 0.058427487, 0.5144919, 0.46926618, 0.33251262, -0.81806195, -0.21887228, 0.9412872, 0.25704715, 211.90015, 41.70018, 194.94122)
+
+[node name="Satellite6" parent="Satellites" unique_id=536167785 instance=ExtResource("12_q5onr")]
+transform = Transform3D(0.06646053, -0.7916988, -0.60728586, 0.92489994, 0.277232, -0.26019868, 0.37435815, -0.54438555, 0.75066704, -233.89426, 47.631676, 113.699036)
+
+[node name="Satellite2" parent="Satellites" unique_id=842205841 instance=ExtResource("12_q5onr")]
+transform = Transform3D(0.038341705, -0.9809465, -0.19045715, 0.99289805, 0.05888057, -0.10337809, 0.1126228, -0.18514091, 0.97623736, -263.66217, -44.416195, -132.45866)
+
+[node name="Satellite3" parent="Satellites" unique_id=2102048789 instance=ExtResource("12_q5onr")]
+transform = Transform3D(-0.4800965, 0.056086283, 0.87542087, 0.59648377, -0.7108642, 0.372666, 0.643207, 0.70108974, 0.30782872, -143.63918, 112.09253, -132.46628)
+
+[node name="Satellite4" parent="Satellites" unique_id=700003368 instance=ExtResource("12_q5onr")]
+transform = Transform3D(-0.61871386, 0.5234251, -0.5858499, 0.36974075, -0.46396002, -0.8050049, -0.69317067, -0.71468014, 0.09352682, 363.6391, -17.183228, -272.2838)
+
+[node name="Satellite5" parent="Satellites" unique_id=1886931852 instance=ExtResource("12_q5onr")]
+transform = Transform3D(0.28366372, -0.53063977, -0.7987217, 0.8059033, 0.58331394, -0.10131686, 0.5196684, -0.6149525, 0.59310937, 149.34506, -104.96556, -289.8055)
+
+[node name="Fuel" type="Node3D" parent="." unique_id=1650835873]
+
+[node name="Fuel1" parent="Fuel" unique_id=21398559 instance=ExtResource("14_o8fc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 205.58499, -13.511522, -125.207954)
+
+[node name="Fuel2" parent="Fuel" unique_id=232872801 instance=ExtResource("14_o8fc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.262192, 12.465149, 185.63086)
+
+[node name="Fuel4" parent="Fuel" unique_id=874739867 instance=ExtResource("14_o8fc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.65512, 112.196, 79.811295)
+
+[node name="Fuel3" parent="Fuel" unique_id=157440536 instance=ExtResource("14_o8fc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.55702, 25.220581, -30.445625)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1193973446]
+libraries/ = SubResource("AnimationLibrary_jhx03")
+autoplay = &"AsteroidsRotation"
+
+[node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="." unique_id=606465898]
+stream = ExtResource("16_dss4m")
+volume_db = -5.0
+bus = &"Soundtrack"
 
 [editable path="GameLayer/GameViewportContainer/GameViewport/SpaceShip"]
 [editable path="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh"]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bbkpjcblvod1a"]
+
+[ext_resource type="Script" uid="uid://bmeua0bvqev66" path="res://scripts/player/display/fuel_bar.gd" id="1_ps24f"]
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/display/vhs_shader_material.tres" id="2_he5fw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1haj2"]
+bg_color = Color(1, 0.09019608, 0.36078432, 1)
+
+[node name="FuelBar" type="ProgressBar" unique_id=1778857870]
+custom_minimum_size = Vector2(410, 90)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -45.0
+offset_right = 205.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/fill = SubResource("StyleBoxFlat_1haj2")
+value = 100.0
+show_percentage = false
+script = ExtResource("1_ps24f")
+
+[node name="FuelLabel" type="Label" parent="." unique_id=403666891]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -16.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "FUEL"
+
+[node name="ShaderRect" type="ColorRect" parent="." unique_id=1130873383]
+material = ExtResource("2_he5fw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

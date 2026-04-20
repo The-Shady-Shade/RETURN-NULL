@@ -2,6 +2,7 @@ extends Control
 
 @export_file("*.tscn") var main_menu_path: String
 @export_group("Controls")
+@export var camera_shake_checkbox: CheckBox
 @export var invert_x_axis_checkbox: CheckBox
 @export var invert_y_axis_checkbox: CheckBox
 @export_group("Volume")
@@ -10,8 +11,9 @@ extends Control
 @export var sfx_slider: HSlider
 
 func _enter_tree() -> void:
-	invert_x_axis_checkbox.toggle_mode = GameManager.inverse_x_axis
-	invert_y_axis_checkbox.toggle_mode = GameManager.inverse_y_axis
+	camera_shake_checkbox.button_pressed = GameManager.camera_shake
+	invert_x_axis_checkbox.button_pressed = GameManager.inverse_x_axis
+	invert_y_axis_checkbox.button_pressed = GameManager.inverse_y_axis
 	master_slider.value = get_bus_volume("Master") * 100.0
 	soundtrack_slider.value = get_bus_volume("Soundtrack") * 100.0
 	sfx_slider.value = get_bus_volume("SFX") * 100.0
@@ -37,6 +39,9 @@ func get_bus_volume(bus_name: String) -> float:
 	if bus_volume_db == 0.0:
 		return 1.0
 	return -1.0 / bus_volume_db
+
+func _on_camera_shake_check_box_toggled(toggled_on: bool) -> void:
+	GameManager.camera_shake = toggled_on
 
 func _on_invert_x_axis_check_box_toggled(toggled_on: bool) -> void:
 	GameManager.inverse_x_axis = toggled_on

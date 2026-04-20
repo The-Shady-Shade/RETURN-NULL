@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c0d2hbepxe2l6"]
 
-[ext_resource type="Script" uid="uid://dd15hcutdwpv2" path="res://scripts/display/status.gd" id="1_ro0aw"]
+[ext_resource type="Script" uid="uid://dd15hcutdwpv2" path="res://scripts/player/display/status.gd" id="1_ro0aw"]
 [ext_resource type="Texture2D" uid="uid://ccreeng42u0jj" path="res://textures/map_icons/signal_icon.png" id="2_luhjh"]
 [ext_resource type="Texture2D" uid="uid://c4qldou274kki" path="res://textures/display/cat.png" id="3_qxnyj"]
-[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/vhs_shader_material.tres" id="4_y7o86"]
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/display/vhs_shader_material.tres" id="4_y7o86"]
+[ext_resource type="AudioStream" uid="uid://b22evpg1luk3k" path="res://audio/sfx/scanner/signal.wav" id="5_luhjh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5bw6f"]
 atlas = ExtResource("3_qxnyj")
@@ -33,7 +34,7 @@ length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SignalLabel:visible")
+tracks/0/path = NodePath("Signal/SignalLabel:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +46,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SignalRect:visible")
+tracks/1/path = NodePath("Signal/SignalRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -67,13 +68,65 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_5bw6f"]
+resource_name = "RESET"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Signal/SignalLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Signal/SignalRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CatSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SignalSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_hhwgf"]
-resource_name = "Ping"
+resource_name = "Signal"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SignalRect:visible")
+tracks/0/path = NodePath("Signal/SignalRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -85,7 +138,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SignalLabel:visible")
+tracks/1/path = NodePath("Signal/SignalLabel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -106,41 +159,13 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_5bw6f"]
-resource_name = "RESET"
-length = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SignalLabel:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SignalRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CatSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SignalSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -150,11 +175,11 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fyeqn"]
 _data = {
 &"Calm": SubResource("Animation_fyeqn"),
-&"Ping": SubResource("Animation_hhwgf"),
-&"RESET": SubResource("Animation_5bw6f")
+&"RESET": SubResource("Animation_5bw6f"),
+&"Signal": SubResource("Animation_hhwgf")
 }
 
-[node name="Status" type="Control" unique_id=526530144]
+[node name="Status" type="Control" unique_id=526530144 node_paths=PackedStringArray("animation")]
 custom_minimum_size = Vector2(420, 403)
 layout_mode = 3
 anchors_preset = 8
@@ -169,8 +194,17 @@ offset_bottom = 201.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ro0aw")
+animation = NodePath("AnimationPlayer")
 
-[node name="SignalLabel" type="Label" parent="." unique_id=1911879868]
+[node name="Signal" type="Control" parent="." unique_id=1046828707]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SignalLabel" type="Label" parent="Signal" unique_id=1911879868]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -185,11 +219,11 @@ offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
-text = "Press F to activate Scanner"
+text = "PRESS F TO ACTIVATE SCANNER"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="SignalRect" type="TextureRect" parent="." unique_id=320463025]
+[node name="SignalRect" type="TextureRect" parent="Signal" unique_id=320463025]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -205,7 +239,7 @@ scale = Vector2(18.34, 18.34)
 sprite_frames = SubResource("SpriteFrames_oat3a")
 animation = &"Base"
 autoplay = "Base"
-frame_progress = 0.16235024
+frame_progress = 0.9239599
 
 [node name="ShaderRect" type="ColorRect" parent="." unique_id=2063701398]
 material = ExtResource("4_y7o86")
@@ -219,3 +253,8 @@ grow_vertical = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1709126202]
 libraries/ = SubResource("AnimationLibrary_fyeqn")
 autoplay = &"Calm"
+
+[node name="SignalSound" type="AudioStreamPlayer" parent="." unique_id=482558376]
+stream = ExtResource("5_luhjh")
+volume_db = -5.0
+bus = &"SFX"

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://71a6k63a6g53"]
+
+[ext_resource type="Script" uid="uid://b0jeyqboh71xn" path="res://scripts/environment/fuel.gd" id="1_7ew0u"]
+[ext_resource type="PackedScene" uid="uid://c8p7pksveky7t" path="res://meshes/fuel/fuel.blend" id="1_lgdi0"]
+[ext_resource type="PackedScene" uid="uid://s8pl0i5kin2c" path="res://scenes/display/icon_component.tscn" id="2_4mopa"]
+[ext_resource type="Texture2D" uid="uid://tpmspjpi4cni" path="res://meshes/fuel/fuel_albedo.png" id="2_tu840"]
+[ext_resource type="Texture2D" uid="uid://bblblirkp5i6m" path="res://meshes/fuel/fuel_emission.png" id="3_7ew0u"]
+[ext_resource type="Texture2D" uid="uid://c1e3dlq7t7ypb" path="res://textures/map_icons/fuel_icon.png" id="3_tu840"]
+[ext_resource type="AudioStream" uid="uid://fermgc02uidi" path="res://audio/sfx/fuel/refuel.wav" id="7_6xrid"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xrid"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0.09019608, 0.36078432, 1)
+albedo_texture = ExtResource("2_tu840")
+metallic = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 0.3137255, 0, 1)
+emission_texture = ExtResource("3_7ew0u")
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6xrid"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ew0u"]
+size = Vector3(4, 4, 4)
+
+[node name="Fuel" type="StaticBody3D" unique_id=21398559 node_paths=PackedStringArray("refuel_sound")]
+collision_layer = 0
+collision_mask = 33
+script = ExtResource("1_7ew0u")
+refuel_sound = NodePath("RefuelSound")
+
+[node name="Mesh" parent="." unique_id=1680887135 instance=ExtResource("1_lgdi0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Cube" parent="Mesh" index="0" unique_id=1043528957]
+surface_material_override/0 = SubResource("StandardMaterial3D_6xrid")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=610249475]
+shape = SubResource("BoxShape3D_6xrid")
+
+[node name="IconComponent" parent="." unique_id=902515679 instance=ExtResource("2_4mopa")]
+icon = ExtResource("3_tu840")
+
+[node name="FuelArea" type="Area3D" parent="." unique_id=2087928757]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FuelArea" unique_id=930970926]
+shape = SubResource("BoxShape3D_7ew0u")
+debug_color = Color(1, 0.3137255, 0, 1)
+
+[node name="RefuelSound" type="AudioStreamPlayer" parent="." unique_id=425620827]
+stream = ExtResource("7_6xrid")
+bus = &"SFX"
+
+[connection signal="body_entered" from="FuelArea" to="." method="_on_fuel_area_body_entered"]
+
+[editable path="Mesh"]

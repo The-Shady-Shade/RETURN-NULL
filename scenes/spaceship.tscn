@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://cuutkagxm6kgs"]
 
-[ext_resource type="Script" uid="uid://d0d8p4225t2pd" path="res://scripts/spaceship.gd" id="1_tuyoq"]
-[ext_resource type="PackedScene" uid="uid://bv0y2jx7fvurn" path="res://meshes/spaceship.blend" id="2_fjrip"]
-[ext_resource type="Script" uid="uid://0ltnhdhilhq7" path="res://scripts/display_manager.gd" id="4_ur7pv"]
+[ext_resource type="Script" uid="uid://d0d8p4225t2pd" path="res://scripts/player/spaceship.gd" id="1_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://bv0y2jx7fvurn" path="res://meshes/spaceship/spaceship.blend" id="2_fjrip"]
+[ext_resource type="Script" uid="uid://c2p5l35rkoelv" path="res://scripts/player/camera.gd" id="3_l0x72"]
+[ext_resource type="Script" uid="uid://0ltnhdhilhq7" path="res://scripts/player/display/display_manager.gd" id="4_ur7pv"]
 [ext_resource type="PackedScene" uid="uid://e4qaawt7wqkk" path="res://scenes/display/map.tscn" id="5_y4r1p"]
 [ext_resource type="PackedScene" uid="uid://s8pl0i5kin2c" path="res://scenes/display/icon_component.tscn" id="6_d2wvv"]
 [ext_resource type="PackedScene" uid="uid://ddmn2urpu1kok" path="res://scenes/display/speedometer.tscn" id="6_fjrip"]
 [ext_resource type="PackedScene" uid="uid://c0d2hbepxe2l6" path="res://scenes/display/status.tscn" id="6_ur7pv"]
 [ext_resource type="PackedScene" uid="uid://dputmgnh6ok6" path="res://scenes/display/task.tscn" id="7_6wr2n"]
 [ext_resource type="Texture2D" uid="uid://bnlaoepxtotf4" path="res://textures/map_icons/player_icon.png" id="7_smehm"]
+[ext_resource type="PackedScene" uid="uid://dhu368r7ac8my" path="res://scenes/display/hp_bar.tscn" id="8_yckko"]
+[ext_resource type="PackedScene" uid="uid://bbkpjcblvod1a" path="res://scenes/display/fuel_bar.tscn" id="10_5eye7"]
 [ext_resource type="Texture2D" uid="uid://b7uc8gem53v7" path="res://textures/display/speedometer.png" id="10_y4r1p"]
+[ext_resource type="AudioStream" uid="uid://ca1kttg80ot1j" path="res://audio/sfx/hp/got_damage.wav" id="13_iow36"]
+[ext_resource type="AudioStream" uid="uid://bfl8d0xl4tuvp" path="res://audio/sfx/boost.wav" id="14_0xuuw"]
+[ext_resource type="AudioStream" uid="uid://b5ymbp5j3mdu2" path="res://audio/sfx/hp/out_of_hp.wav" id="15_d22a7"]
+[ext_resource type="AudioStream" uid="uid://b8hepqnl43b7u" path="res://audio/sfx/fuel/out_of_fuel.wav" id="15_tst1b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wr2n"]
 resource_name = "PilotSeat"
@@ -28,8 +35,12 @@ metadata/extras = {
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ur7pv"]
 points = PackedVector3Array(-10.396351, -0.42719018, -2.9562938, -10.396351, -0.0709407, -2.9562938, -3.0845852, -0.42719018, -2.9562938, -10.396351, -0.42719018, 2.9562938, -10.396351, 1.1876935, -2.9186745, -3.0833697, -0.0709407, -2.9562938, 1.8340836, -0.42719018, -1.7472692, -3.0845852, -0.42719018, 2.9562938, -10.396351, -0.0709407, 2.9562938, -10.396351, 3.534749, -1.6419353, -2.211938, 3.577516, -1.6645068, -3.0833697, 1.1876935, -2.9186745, 1.8352995, 1.1735803, -1.7426391, 2.0200386, -0.42719018, -1.5354439, -3.0833697, -0.0709407, 2.9562938, 1.8340836, -0.42719018, 1.7466905, -10.396351, 1.1876935, 2.9180958, -10.396351, 3.7661185, -1.4648354, -10.396351, 3.9418912, -1.3091496, -2.2240915, 3.784936, -1.463678, 0.875144, 2.972362, -1.463678, 0.80465126, 2.7268796, -1.6367265, 1.3722372, 2.2970705, -1.6662431, 1.8596067, 1.907463, -1.6616131, 1.9908686, 1.1085744, -1.5238688, 2.0188227, -0.0709407, -1.5354439, 2.0200386, -0.42719018, 1.5348651, -3.0833697, 1.1876935, 2.9180958, 1.8352995, 1.1735803, 1.7420604, -10.396351, 3.534749, 1.6413567, -2.211938, 3.577516, 1.6639283, -10.396351, 3.9418912, 1.3085711, -2.2641993, 3.93291, -0.0005786419, -2.2641993, 3.9320545, -1.3062559, 0.86420536, 3.066022, -1.3062559, 1.3989754, 2.5746288, -1.4729381, 1.9507608, 1.97589, -1.4521028, 1.9738531, 1.9827329, -1.2663217, 2.0005922, 1.4434404, -1.2790543, 2.007884, 1.102587, -1.2807906, 2.0188227, -0.0709407, 1.5348651, 1.8596067, 1.907463, 1.6610343, 1.3722372, 2.2970705, 1.6650856, 0.80465126, 2.7268796, 1.6361477, 1.9908686, 1.1085744, 1.5232899, -10.396351, 3.7661185, 1.4636781, -2.2240915, 3.784936, 1.4630992, 0.875144, 2.972362, 1.4630992, -2.2641993, 3.9320545, 1.3056772, -2.2641993, 3.9324822, 0.6528387, 0.86420536, 3.066022, 1.3056772, 1.3941145, 2.6618733, -1.2819481, 1.9726381, 1.9882926, -0.0005786419, 1.9738531, 1.9827329, 1.265743, 2.0005922, 1.4434404, 1.2784755, 2.007884, 1.102587, 1.2802117, 1.9507608, 1.97589, 1.451524, 1.3989754, 2.5746288, 1.4723594, 1.3941145, 2.6618733, 1.2807906)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_r0fvi"]
-size = Vector3(1.3743896, 2.0395508, 1.2061157)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l0x72"]
+seed = 7
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iow36"]
+noise = SubResource("FastNoiseLite_l0x72")
+seamless = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_dr6dc"]
 viewport_path = NodePath("MapViewport")
@@ -43,6 +54,9 @@ size = Vector2(0.885, 0.692)
 
 [sub_resource type="QuadMesh" id="QuadMesh_6wr2n"]
 size = Vector2(0.42, 0.403)
+
+[sub_resource type="QuadMesh" id="QuadMesh_l0x72"]
+size = Vector2(0.41, 0.09)
 
 [sub_resource type="QuadMesh" id="QuadMesh_yckko"]
 size = Vector2(0.42, 0.403)
@@ -60,24 +74,30 @@ gravity = Vector3(0, 0, 0)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smehm"]
 transparency = 1
 shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.2)
+albedo_color = Color(1, 1, 1, 0.39215687)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ur7pv"]
 material = SubResource("StandardMaterial3D_smehm")
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="SpacerShip" type="CharacterBody3D" unique_id=1050205277 node_paths=PackedStringArray("strafe_marker", "camera", "mouse_control")]
+[node name="SpaceShip" type="CharacterBody3D" unique_id=1050205277 node_paths=PackedStringArray("strafe_marker", "boost_sound", "camera", "mouse_control", "damage_sound", "out_of_hp_sound", "display_manager", "out_of_fuel_sound")]
 collision_layer = 32
 script = ExtResource("1_tuyoq")
 strafe_marker = NodePath("StrafeMarker")
-strafe_spd_max = 5.0
+strafe_spd_max = 10.0
+boost_sound = NodePath("BoostSound")
 camera = NodePath("Camera3D")
 mouse_control = NodePath("MouseControl")
+main_menu_path = "uid://binxhqdu5nxh"
+damage_sound = NodePath("DamageSound")
+out_of_hp_sound = NodePath("OutOfHPSound")
+display_manager = NodePath("DisplayManager")
+out_of_fuel_sound = NodePath("OutOfFuelSound")
 
-[node name="Mesh" parent="." unique_id=35367308 instance=ExtResource("2_fjrip")]
+[node name="Mesh" parent="." unique_id=2076564305 instance=ExtResource("2_fjrip")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1.4946996, 0)
 
-[node name="PilotSeat" parent="Mesh" index="1" unique_id=653584740]
+[node name="PilotSeat" parent="Mesh" index="1" unique_id=1612671322]
 surface_material_override/0 = SubResource("StandardMaterial3D_6wr2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=574424615]
@@ -88,14 +108,10 @@ shape = SubResource("ConvexPolygonShape3D_ur7pv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.542, 0)
 cull_mask = 1048569
 fov = 85.0
+script = ExtResource("3_l0x72")
+noise_texture = SubResource("NoiseTexture2D_iow36")
 
 [node name="StrafeMarker" type="Marker3D" parent="." unique_id=1630286204]
-
-[node name="PilotSeatArea" type="Area3D" parent="." unique_id=423725957]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PilotSeatArea" unique_id=925146825]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0044288635, -0.5197754, 0.0113220215)
-shape = SubResource("BoxShape3D_r0fvi")
 
 [node name="DisplayManager" type="Node3D" parent="." unique_id=787184768 node_paths=PackedStringArray("displays")]
 script = ExtResource("4_ur7pv")
@@ -103,7 +119,9 @@ displays = {
 NodePath("Map"): ExtResource("5_y4r1p"),
 NodePath("Speedometer"): ExtResource("6_fjrip"),
 NodePath("Status"): ExtResource("6_ur7pv"),
-NodePath("Task"): ExtResource("7_6wr2n")
+NodePath("Task"): ExtResource("7_6wr2n"),
+NodePath("HPBar"): ExtResource("8_yckko"),
+NodePath("FuelBar"): ExtResource("10_5eye7")
 }
 
 [node name="Map" type="MeshInstance3D" parent="DisplayManager" unique_id=668819653]
@@ -115,6 +133,16 @@ mesh = SubResource("QuadMesh_s1a8k")
 transform = Transform3D(1, 0, 0, 0, 0.9965958, 0.08244295, 0, -0.08244295, 0.9965958, 0.26430306, -0.30955002, -1.3933702)
 material_override = SubResource("StandardMaterial3D_ykp3x")
 mesh = SubResource("QuadMesh_6wr2n")
+
+[node name="HPBar" type="MeshInstance3D" parent="DisplayManager" unique_id=822098046]
+transform = Transform3D(1, 0, 0, 0, 0.99984056, 0.017853774, 0, -0.017853774, 0.99984056, 0.26558036, 0.002106443, -1.4170552)
+material_override = SubResource("StandardMaterial3D_ykp3x")
+mesh = SubResource("QuadMesh_l0x72")
+
+[node name="FuelBar" type="MeshInstance3D" parent="DisplayManager" unique_id=470433383]
+transform = Transform3D(1, 0, 0, 0, 0.99984056, 0.017853774, 0, -0.017853774, 0.99984056, 0.73324615, 0.002106443, -1.4150841)
+material_override = SubResource("StandardMaterial3D_ykp3x")
+mesh = SubResource("QuadMesh_l0x72")
 
 [node name="Speedometer" type="MeshInstance3D" parent="DisplayManager" unique_id=2117113226]
 transform = Transform3D(1, 0, 0, 0, 0.9965958, 0.08244295, 0, -0.08244295, 0.9965958, 0.7317173, -0.31157184, -1.3933702)
@@ -155,5 +183,21 @@ grow_vertical = 2
 scale = Vector2(3, 3)
 texture = ExtResource("10_y4r1p")
 offset = Vector2(6.667, 6.667)
+
+[node name="BoostSound" type="AudioStreamPlayer" parent="." unique_id=1893598506]
+stream = ExtResource("14_0xuuw")
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="." unique_id=1215146660]
+stream = ExtResource("13_iow36")
+bus = &"SFX"
+
+[node name="OutOfHPSound" type="AudioStreamPlayer" parent="." unique_id=15940758]
+stream = ExtResource("15_d22a7")
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="OutOfFuelSound" type="AudioStreamPlayer" parent="." unique_id=1611252425]
+stream = ExtResource("15_tst1b")
+bus = &"SFX"
 
 [editable path="Mesh"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://e4qaawt7wqkk"]
 
-[ext_resource type="Script" uid="uid://cr0qtcpf34r5y" path="res://scripts/display/map.gd" id="1_5asso"]
-[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/vhs_shader_material.tres" id="2_5hqkh"]
+[ext_resource type="Script" uid="uid://cr0qtcpf34r5y" path="res://scripts/player/display/map.gd" id="1_5asso"]
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/display/vhs_shader_material.tres" id="2_5hqkh"]
 
 [node name="Map" type="Control" unique_id=526530144 node_paths=PackedStringArray("map_texture")]
 custom_minimum_size = Vector2(885, 692)

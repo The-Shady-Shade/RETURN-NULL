@@ -1,13 +1,10 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://b6f4caaa71krw"]
 
 [ext_resource type="Texture2D" uid="uid://cgxcog04q5th7" path="res://resources/materials/pilot_panel/pilot_panel_albedo.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://c5lui5y4wykmy" path="res://resources/materials/pilot_panel/pilot_panel_normal.png" id="3"]
 
 [resource]
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.097500004, 0.112375006, 0.15, 1)
 albedo_texture = ExtResource("1")
-normal_enabled = true
-normal_texture = ExtResource("3")
 uv1_triplanar = true

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cymfx3fb8onqm"]
 
 [ext_resource type="Script" uid="uid://780sc5uhm0cv" path="res://scripts/menu/intro.gd" id="1_bl511"]
+[ext_resource type="AudioStream" uid="uid://72lm3t7mr5en" path="res://audio/sfx/text.wav" id="2_6torq"]
 
-[node name="Intro" type="Control" unique_id=16172743 node_paths=PackedStringArray("label")]
+[node name="Intro" type="Control" unique_id=16172743 node_paths=PackedStringArray("label", "text_sound")]
+custom_minimum_size = Vector2(671, 732)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,29 +12,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bl511")
-lines = Array[String](["Hello World", "Wassup Bro", "Yeyeye"])
-label = NodePath("PanelContainer/RichTextLabel")
+label = NodePath("RichTextLabel")
+text_sound = NodePath("TextSound")
 world_path = "uid://b1slwu33ywm5d"
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=620531574]
-custom_minimum_size = Vector2(640, 32)
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2014236265]
+custom_minimum_size = Vector2(700, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -316.0
+offset_top = -160.0
+offset_right = 316.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer" unique_id=2014236265]
-layout_mode = 2
+theme_override_colors/default_color = Color(0.44313726, 0.44313726, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.44313726, 0.44313726, 1, 0)
 bbcode_enabled = true
+text = "[BOOT SEQUENCE CALIBRATING]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextSound" type="AudioStreamPlayer" parent="." unique_id=1912717443]
+stream = ExtResource("2_6torq")
+volume_db = -5.0
+bus = &"SFX"

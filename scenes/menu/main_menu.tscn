@@ -35,7 +35,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "RETURN//[color=\"red\"]NULL"
+text = "RETURN//[color=\"7171ff\"]NULL"
 fit_content = true
 horizontal_alignment = 1
 
@@ -49,11 +49,10 @@ size_flags_vertical = 3
 [node name="PlayButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1514019351]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.44313726, 0.44313726, 1, 0.6)
+theme_override_colors/font_pressed_color = Color(0.44313726, 0.44313726, 1, 1)
+theme_override_colors/font_hover_color = Color(0.44313726, 0.44313726, 1, 0.6)
+theme_override_colors/font_hover_pressed_color = Color(0.44313726, 0.44313726, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 0, 0, 0)
 theme_override_font_sizes/font_size = 96
 text = "Play"
@@ -65,10 +64,10 @@ layout_mode = 2
 [node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=905820128]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.44313726, 0.44313726, 1, 0.6)
+theme_override_colors/font_pressed_color = Color(0.44313726, 0.44313726, 1, 1)
+theme_override_colors/font_hover_color = Color(0.44313726, 0.44313726, 1, 0.6)
+theme_override_colors/font_hover_pressed_color = Color(0.44313726, 0.44313726, 1, 1)
 theme_override_colors/font_outline_color = Color(0.44313726, 0.44313726, 1, 0)
 theme_override_font_sizes/font_size = 96
 text = "Settings"

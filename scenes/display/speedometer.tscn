@@ -1,10 +1,122 @@
 [gd_scene format=3 uid="uid://ddmn2urpu1kok"]
 
-[ext_resource type="Script" uid="uid://beo2re0rlrmmi" path="res://scripts/display/speedometer.gd" id="1_dodbo"]
+[ext_resource type="Script" uid="uid://beo2re0rlrmmi" path="res://scripts/player/display/speedometer.gd" id="1_dodbo"]
 [ext_resource type="Texture2D" uid="uid://b7uc8gem53v7" path="res://textures/display/speedometer.png" id="2_amecf"]
-[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/vhs_shader_material.tres" id="2_ha2me"]
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/display/vhs_shader_material.tres" id="2_ha2me"]
+[ext_resource type="Texture2D" uid="uid://brks7j5bgojh5" path="res://textures/display/fuel_ping.png" id="3_rsj2r"]
+[ext_resource type="AudioStream" uid="uid://04b2kn3vnne8" path="res://audio/sfx/fuel/fuel_ping.wav" id="5_qnwas"]
 
-[node name="Speedometer" type="Control" unique_id=526530144 node_paths=PackedStringArray("speed_label", "speed_bar")]
+[sub_resource type="Animation" id="Animation_rsj2r"]
+resource_name = "Ping"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Speed:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fuel/PingRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fuel/PingLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PingSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qnwas"]
+resource_name = "RESET"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fuel/PingLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fuel/PingRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Speed:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PingSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3d0so"]
+_data = {
+&"Ping": SubResource("Animation_rsj2r"),
+&"RESET": SubResource("Animation_qnwas")
+}
+
+[node name="Speedometer" type="Control" unique_id=526530144 node_paths=PackedStringArray("speed_label", "speed_bar", "animation")]
 custom_minimum_size = Vector2(420, 403)
 layout_mode = 3
 anchors_preset = 8
@@ -19,30 +131,39 @@ offset_bottom = 201.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dodbo")
-speed_label = NodePath("SpeedLabel")
-speed_bar = NodePath("SpeedBar")
+speed_label = NodePath("Speed/SpeedLabel")
+speed_bar = NodePath("Speed/SpeedBar")
+animation = NodePath("AnimationPlayer")
 
-[node name="SpeedLabel" type="Label" parent="." unique_id=1381845904]
+[node name="Speed" type="Control" parent="." unique_id=1853692631]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpeedLabel" type="Label" parent="Speed" unique_id=1381845904]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -76.5
+offset_top = -24.0
+offset_right = 76.5
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0.75686276, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.8156863, 0.09019608, 0.24705882, 0.6)
 theme_override_font_sizes/font_size = 48
-text = "40 m/s"
+text = "40 M/S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SpeedBar" type="TextureProgressBar" parent="." unique_id=1042702068]
+[node name="SpeedBar" type="TextureProgressBar" parent="Speed" unique_id=1042702068]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,12 +176,46 @@ offset_right = 160.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
-max_value = 40.0
 value = 40.0
 fill_mode = 4
 nine_patch_stretch = true
 texture_progress = ExtResource("2_amecf")
 tint_progress = Color(1, 0.09019608, 0.36078432, 1)
+
+[node name="Fuel" type="Control" parent="." unique_id=2135991622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PingLabel" type="Label" parent="Fuel" unique_id=677896575]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -32.0
+offset_right = 194.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "FUEL IS LOW"
+
+[node name="PingRect" type="TextureRect" parent="Fuel" unique_id=69616937]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rsj2r")
 
 [node name="ShaderRect" type="ColorRect" parent="." unique_id=2063701398]
 material = ExtResource("2_ha2me")
@@ -70,3 +225,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=364167473]
+libraries/ = SubResource("AnimationLibrary_3d0so")
+
+[node name="PingSound" type="AudioStreamPlayer" parent="." unique_id=270442529]
+stream = ExtResource("5_qnwas")

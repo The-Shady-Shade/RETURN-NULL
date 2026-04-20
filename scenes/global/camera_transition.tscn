@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bu5joxew1jixe"]
-
-[ext_resource type="Script" uid="uid://baydkuwkf1jt6" path="res://scripts/global/camera_transition.gd" id="1_mhkrq"]
-
-[node name="CameraTransition" type="Camera3D" unique_id=2059016938]
-cull_mask = 1048573
-script = ExtResource("1_mhkrq")

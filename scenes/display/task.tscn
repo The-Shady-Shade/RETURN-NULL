@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dputmgnh6ok6"]
 
-[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/vhs_shader_material.tres" id="1_iqvgq"]
-[ext_resource type="Script" uid="uid://d1mb3pxswuh3s" path="res://scripts/display/task.gd" id="1_qrsyl"]
+[ext_resource type="Material" uid="uid://b7ok6l4cfstff" path="res://shaders/display/vhs_shader_material.tres" id="1_iqvgq"]
+[ext_resource type="Script" uid="uid://d1mb3pxswuh3s" path="res://scripts/player/display/task.gd" id="1_qrsyl"]
+[ext_resource type="AudioStream" uid="uid://uur2gyinpx78" path="res://audio/sfx/scanner/new_letter.wav" id="3_4xasn"]
 
-[node name="Task" type="Control" unique_id=624578858]
+[node name="Task" type="Control" unique_id=624578858 node_paths=PackedStringArray("letters", "new_letter_sound")]
 custom_minimum_size = Vector2(1035, 343)
 layout_mode = 3
 anchors_preset = 8
@@ -18,6 +19,16 @@ offset_bottom = 171.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qrsyl")
+letters = {
+"A": NodePath("HBoxContainer/APanelContainer/ALabel"),
+"B": NodePath("HBoxContainer/BPanelContainer/BLabel"),
+"E": NodePath("HBoxContainer/EPanelContainer/ELabel"),
+"L": NodePath("HBoxContainer/LPanelContainer/LLabel"),
+"N": NodePath("HBoxContainer/NPanelContainer/NLabel"),
+"U": NodePath("HBoxContainer/UPanelContainer/ULabel")
+}
+new_letter_sound = NodePath("NewLetterSound")
+ending_path = "uid://c0ga85e758i8o"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1377476493]
 layout_mode = 1
@@ -90,3 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="NewLetterSound" type="AudioStreamPlayer" parent="." unique_id=347103862]
+stream = ExtResource("3_4xasn")
+bus = &"SFX"
