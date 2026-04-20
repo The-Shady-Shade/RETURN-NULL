@@ -314,7 +314,7 @@ render_target_update_mode = 4
 
 [node name="SpaceShip" parent="GameLayer/GameViewportContainer/GameViewport" unique_id=1050205277 instance=ExtResource("1_nnsk1")]
 
-[node name="DisplayManager" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip" index="4" unique_id=787184768 node_paths=PackedStringArray("displays")]
+[node name="DisplayManager" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh" parent_id_path=PackedInt32Array(1050205277, 2076564305) index="3" unique_id=787184768 node_paths=PackedStringArray("displays")]
 displays = {
 NodePath("Map"): ExtResource("4_e3hyu"),
 NodePath("Speedometer"): ExtResource("5_q5onr"),
@@ -324,22 +324,22 @@ NodePath("HPBar"): ExtResource("8_q5onr"),
 NodePath("FuelBar"): ExtResource("9_jhx03")
 }
 
-[node name="Map" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="0" unique_id=668819653]
+[node name="Map" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="0" unique_id=668819653]
 material_override = SubResource("StandardMaterial3D_7t5mc")
 
-[node name="Status" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="1" unique_id=1163750855]
+[node name="Status" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="1" unique_id=1163750855]
 material_override = SubResource("StandardMaterial3D_7t5mc")
 
-[node name="HPBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="2" unique_id=822098046]
+[node name="HPBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="2" unique_id=822098046]
 material_override = SubResource("StandardMaterial3D_7t5mc")
 
-[node name="FuelBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="3" unique_id=470433383]
+[node name="FuelBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="3" unique_id=470433383]
 material_override = SubResource("StandardMaterial3D_7t5mc")
 
-[node name="Speedometer" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="4" unique_id=2117113226]
+[node name="Speedometer" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="4" unique_id=2117113226]
 material_override = SubResource("StandardMaterial3D_7t5mc")
 
-[node name="Task" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/DisplayManager" index="5" unique_id=157265324]
+[node name="Task" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="5" unique_id=157265324]
 material_override = SubResource("StandardMaterial3D_7t5mc")
 
 [node name="AsteroidField" type="GridMap" parent="." unique_id=431607759]

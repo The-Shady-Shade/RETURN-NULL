@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="RETURN//NULL"
-config/version="1.0.0"
+config/description="RETURN//NULL is an atmospheric space exploration experience about isolation and curiosity. Explore the void, decode transmissions."
+config/version="1.0.1"
 run/main_scene="uid://binxhqdu5nxh"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.019607844, 0, 0.101960786, 1)
-boot_splash/show_image=false
-boot_splash/stretch_mode=2
+boot_splash/stretch_mode=0
 boot_splash/use_filter=false
 boot_splash/image="uid://b0gueije4h22e"
-config/icon="uid://ccreeng42u0jj"
+config/icon="uid://6aowadx0x75f"
 
 [audio]
 

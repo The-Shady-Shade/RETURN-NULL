@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://fermgc02uidi" path="res://audio/sfx/fuel/refuel.wav" id="7_6xrid"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xrid"]
-transparency = 1
 blend_mode = 1
 albedo_color = Color(1, 0.09019608, 0.36078432, 1)
 albedo_texture = ExtResource("2_tu840")

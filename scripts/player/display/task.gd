@@ -13,5 +13,5 @@ func update_letters(letter: String) -> void:
 	new_letter_sound.play()
 	GameManager.letters.append(letter)
 	if GameManager.letters.size() >= 6:
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.5).timeout
 		SceneTransition.change_scene(ending_path)
