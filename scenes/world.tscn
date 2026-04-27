@@ -5,24 +5,11 @@
 [ext_resource type="Script" uid="uid://b28u15ibinbh1" path="res://scripts/world.gd" id="1_xo05s"]
 [ext_resource type="Script" uid="uid://hifvyvwm1ni8" path="res://scripts/skybox_follower.gd" id="2_4wyf3"]
 [ext_resource type="Shader" uid="uid://bdtu24wqq2yvn" path="res://shaders/skybox/planet.gdshader" id="3_qfnet"]
-[ext_resource type="PackedScene" uid="uid://e4qaawt7wqkk" path="res://scenes/display/map.tscn" id="4_e3hyu"]
-[ext_resource type="PackedScene" uid="uid://ddmn2urpu1kok" path="res://scenes/display/speedometer.tscn" id="5_q5onr"]
-[ext_resource type="PackedScene" uid="uid://c0d2hbepxe2l6" path="res://scenes/display/status.tscn" id="6_jhx03"]
-[ext_resource type="PackedScene" uid="uid://dputmgnh6ok6" path="res://scenes/display/task.tscn" id="7_q5onr"]
 [ext_resource type="Shader" uid="uid://ckxib5k7qedxf" path="res://shaders/skybox/black_hole.gdshader" id="8_4mrxx"]
-[ext_resource type="PackedScene" uid="uid://dhu368r7ac8my" path="res://scenes/display/hp_bar.tscn" id="8_q5onr"]
-[ext_resource type="PackedScene" uid="uid://bbkpjcblvod1a" path="res://scenes/display/fuel_bar.tscn" id="9_jhx03"]
 [ext_resource type="ArrayMesh" uid="uid://h28ybjke0k5x" path="res://meshes/asteroid/asteroid.obj" id="11_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://d4j6iok1bq8jg" path="res://scenes/environment/satellite.tscn" id="12_q5onr"]
 [ext_resource type="PackedScene" uid="uid://71a6k63a6g53" path="res://scenes/environment/Fuel.tscn" id="14_o8fc1"]
 [ext_resource type="AudioStream" uid="uid://nr4jr0n2you5" path="res://audio/soundtrack/signal_transmission.mp3" id="16_dss4m"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_dss4m"]
-viewport_path = NodePath("MapViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t5mc"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_dss4m")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e3hyu"]
 size = Vector3(1.5, 1.5, 1.5)
@@ -314,34 +301,6 @@ render_target_update_mode = 4
 
 [node name="SpaceShip" parent="GameLayer/GameViewportContainer/GameViewport" unique_id=1050205277 instance=ExtResource("1_nnsk1")]
 
-[node name="DisplayManager" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh" parent_id_path=PackedInt32Array(1050205277, 2076564305) index="3" unique_id=787184768 node_paths=PackedStringArray("displays")]
-displays = {
-NodePath("Map"): ExtResource("4_e3hyu"),
-NodePath("Speedometer"): ExtResource("5_q5onr"),
-NodePath("Status"): ExtResource("6_jhx03"),
-NodePath("Task"): ExtResource("7_q5onr"),
-NodePath("HPBar"): ExtResource("8_q5onr"),
-NodePath("FuelBar"): ExtResource("9_jhx03")
-}
-
-[node name="Map" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="0" unique_id=668819653]
-material_override = SubResource("StandardMaterial3D_7t5mc")
-
-[node name="Status" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="1" unique_id=1163750855]
-material_override = SubResource("StandardMaterial3D_7t5mc")
-
-[node name="HPBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="2" unique_id=822098046]
-material_override = SubResource("StandardMaterial3D_7t5mc")
-
-[node name="FuelBar" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="3" unique_id=470433383]
-material_override = SubResource("StandardMaterial3D_7t5mc")
-
-[node name="Speedometer" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="4" unique_id=2117113226]
-material_override = SubResource("StandardMaterial3D_7t5mc")
-
-[node name="Task" parent="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh/DisplayManager" index="5" unique_id=157265324]
-material_override = SubResource("StandardMaterial3D_7t5mc")
-
 [node name="AsteroidField" type="GridMap" parent="." unique_id=431607759]
 mesh_library = SubResource("MeshLibrary_jhx03")
 cell_size = Vector3(4, 4, 4)
@@ -428,6 +387,3 @@ autoplay = &"AsteroidsRotation"
 stream = ExtResource("16_dss4m")
 volume_db = -5.0
 bus = &"Soundtrack"
-
-[editable path="GameLayer/GameViewportContainer/GameViewport/SpaceShip"]
-[editable path="GameLayer/GameViewportContainer/GameViewport/SpaceShip/Mesh"]

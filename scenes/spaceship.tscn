@@ -66,7 +66,7 @@ seamless = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fjrip"]
 emission_shape = 3
-emission_box_extents = Vector3(16, 8, 8)
+emission_box_extents = Vector3(16, 8, 16)
 direction = Vector3(1, 1, 1)
 initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
@@ -80,14 +80,13 @@ albedo_color = Color(1, 1, 1, 0.39215687)
 material = SubResource("StandardMaterial3D_smehm")
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="SpaceShip" type="CharacterBody3D" unique_id=1050205277 node_paths=PackedStringArray("strafe_marker", "boost_sound", "camera", "mouse_control", "damage_sound", "out_of_hp_sound", "display_manager", "out_of_fuel_sound")]
+[node name="SpaceShip" type="CharacterBody3D" unique_id=1050205277 node_paths=PackedStringArray("strafe_marker", "boost_sound", "camera", "damage_sound", "out_of_hp_sound", "display_manager", "out_of_fuel_sound")]
 collision_layer = 32
 script = ExtResource("1_tuyoq")
 strafe_marker = NodePath("StrafeMarker")
 strafe_spd_max = 10.0
 boost_sound = NodePath("BoostSound")
 camera = NodePath("Camera3D")
-mouse_control = NodePath("MouseControl")
 main_menu_path = "uid://binxhqdu5nxh"
 damage_sound = NodePath("DamageSound")
 out_of_hp_sound = NodePath("OutOfHPSound")
@@ -159,15 +158,15 @@ noise_texture = SubResource("NoiseTexture2D_iow36")
 icon = ExtResource("7_smehm")
 
 [node name="Dust" type="GPUParticles3D" parent="." unique_id=1024787424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 amount = 48
 lifetime = 5.0
 fixed_fps = 60
-visibility_aabb = AABB(-12, -8, -18, 24, 16, 24)
+visibility_aabb = AABB(-12, -8, -10, 24, 16, 24)
 process_material = SubResource("ParticleProcessMaterial_fjrip")
 draw_pass_1 = SubResource("BoxMesh_ur7pv")
 
 [node name="MouseControl" type="Control" parent="." unique_id=1278384834]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

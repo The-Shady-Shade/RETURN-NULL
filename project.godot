@@ -12,7 +12,8 @@ config_version=5
 
 config/name="RETURN//NULL"
 config/description="RETURN//NULL is an atmospheric space exploration experience about isolation and curiosity. Explore the void, decode transmissions."
-config/version="1.0.1"
+config/version="1.0.2"
+config/tags=PackedStringArray("3d", "itch_io", "ludum_dare")
 run/main_scene="uid://binxhqdu5nxh"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.019607844, 0, 0.101960786, 1)

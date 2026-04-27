@@ -23,13 +23,16 @@ var strafe_velocity: Vector3 = Vector3.ZERO
 var boost_time: float = 0.0
 @export_group("Rotation")
 @export var camera: Camera3D
-@export var mouse_control: Control
-@export var pitch_spd: float = 1.5
-@export var yaw_spd: float = 1.5
-@export var roll_spd: float = 0.5
 @export var mouse_threshold: float = 50.0
 var relative_mouse: Vector2 = Vector2.ZERO
-var roll_dir: float = 0.0
+@export_subgroup("Pitch")
+@export var pitch_spd: float = 1.5
+@export_subgroup("Yaw")
+@export var yaw_spd: float = 1.5
+@export_subgroup("Roll")
+@export var roll_spd: float = 0.5
+@export var roll_acc: float = 3.0
+var roll_velocity: float = 0.0
 @export_category("Survival")
 @export_file("*.tscn") var main_menu_path: String
 var dead: bool = false
@@ -40,7 +43,7 @@ var dead: bool = false
 var hp: float = hp_max
 @export var get_damage_cd_max: float = 2.0
 var get_damage_cd: float = 0.0
-@export var asteroid_collide_dmg: float = 10.0
+@export var asteroid_collide_dmg: float = 20.0
 @export_group("Fuel")
 @export var display_manager: DisplayManager
 @export var out_of_fuel_sound: AudioStreamPlayer
@@ -76,11 +79,11 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if !dead:
 		relative_mouse = get_relative_mouse()
-		roll_dir = Input.get_axis("roll_right", "roll_left")
+		roll_velocity = lerp(roll_velocity, Input.get_axis("roll_right", "roll_left") * roll_spd, roll_acc * delta)
 	
 	basis = basis.rotated(basis.x, -relative_mouse.y * (-1 if GameManager.inverse_x_axis else 1) * PI * pitch_spd * delta) # Pitch
 	basis = basis.rotated(basis.y, -relative_mouse.x * (-1 if GameManager.inverse_y_axis else 1) * PI * yaw_spd * delta) # Yaw
-	basis = basis.rotated(basis.z, roll_dir * PI * roll_spd * delta)
+	basis = basis.rotated(basis.z, roll_velocity * PI * delta)
 	basis = basis.orthonormalized()
 	
 	for idx: int in get_slide_collision_count():
@@ -119,8 +122,8 @@ func get_damage(dmg: float) -> void:
 	damage_sound.play()
 	camera.add_trauma(0.75)
 	
-	if dmg == asteroid_collide_dmg:
-		velocity += basis.z * 100.0
+	get_damage_cd = get_damage_cd_max
+	got_damage.emit()
 	
 	if hp <= 0.0 && !dead:
 		dead = true
@@ -129,5 +132,5 @@ func get_damage(dmg: float) -> void:
 		await get_tree().create_timer(2.0).timeout
 		SceneTransition.change_scene(main_menu_path)
 
-	get_damage_cd = get_damage_cd_max
-	got_damage.emit()
+	if dmg == asteroid_collide_dmg && !dead:
+		velocity += basis.z * 100.0

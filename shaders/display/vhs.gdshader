@@ -1,8 +1,6 @@
 shader_type canvas_item;
 
-
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-
 
 uniform bool overlay = false;
 
@@ -33,8 +31,6 @@ uniform bool clip_warp = false;
 
 uniform float vignette_intensity = 0.4;
 uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
-
-
 
 vec2 random(vec2 uv){
     uv = vec2(dot(uv, vec2(127.1,311.7)), dot(uv, vec2(269.5,183.3)));
@@ -77,7 +73,6 @@ float vignette(vec2 uv){
     float vignette = uv.x * uv.y * 15.0;
     return pow(vignette, vignette_intensity * vignette_opacity);
 }
-
 
 void fragment()
 {
