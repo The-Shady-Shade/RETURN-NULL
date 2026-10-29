@@ -1,5 +1,5 @@
-![Ludum Dare](https://img.shields.io/badge/LudumDare-58-f79122?labelColor=ee5533&link=https%3A%2F%2Fldjam.com%2Fevents%2Fludum-dare%2F56)
-![Ludum Dare](https://img.shields.io/badge/LudumDare58-Compo-f79122?labelColor=ee5533&link=https%3A%2F%2Fldjam.com%2Fevents%2Fludum-dare%2F56)
+![Ludum Dare](https://img.shields.io/badge/LudumDare-59-f79122?labelColor=ee5533&link=https%3A%2F%2Fldjam.com%2Fevents%2Fludum-dare%2F56)
+![Ludum Dare](https://img.shields.io/badge/LudumDare-Compo-f79122?labelColor=ee5533&link=https%3A%2F%2Fldjam.com%2Fevents%2Fludum-dare%2F56)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 ___
 <img width="1648" height="256" alt="logo_big" src="https://github.com/user-attachments/assets/e8ffbbd1-af8a-467e-9396-ac35cdd7059e" /><br>
